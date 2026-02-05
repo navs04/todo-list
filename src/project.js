@@ -25,12 +25,20 @@ const projectManager = (function(){
         return manageProjectObj;
     }
 
+    const findProject = (project) => {
+        for(let i=0; i<projectList.length; i++){
+            if(project == projectList[i]){
+                return projectList[i];
+            }
+        }
+    }
+
     const currentProject = () => {
         const currentProj = projectList[projectList.length - 1];
         return currentProj;
     }
 
-    return {manageProject, currentProject};
+    return {manageProject, currentProject, findProject};
 })();
 
 export {project, projectManager};

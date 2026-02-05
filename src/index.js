@@ -14,13 +14,17 @@ const appController = (function(){
         return projObj;
     }
 
-    const moveTodo = (todo) => {
-        const current = projectManager.currentProject();
-        current.addTodo(todo);
+    const moveTodo = (todo, project) => {
+        const projectFound = projectManager.findProject(project);
+        projectFound.addTodo(todo);
     }
 
     return {manageTodo, controlProject, moveTodo};
 })();
 
 const todo1 = appController.manageTodo("oil painting", "make an oil painting", "2024-01-23", "low","choose a subject, make composition");
+const project2 = appController.controlProject("1", "2");
 const project1 = appController.controlProject("art", "project for all art related things");
+appController.moveTodo(todo1, project1);
+console.log(project1);
+console.log(project2);
