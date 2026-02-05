@@ -6,14 +6,14 @@ function displayDate(dateObj){
 }
 
 const todo = (function(){
-    const createTodo = (title, description, dueDate, priority, notes, status) => {
+    const createTodo = (title, description, dueDate, priority, notes) => {
         const todoStorage = {
             title: title,
             description: description,
             dueDate: displayDate(dueDate),
             priority: priority,
             notes: notes,
-            status: status,
+            status: "incomplete",
             id: crypto.randomUUID(),
         };
 
