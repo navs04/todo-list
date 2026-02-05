@@ -13,7 +13,7 @@ const project = (function(){
 })();
 
 const projectManager = (function(){
-    const defaultProjectObj = project.createProject("Default Project", "Todo items are added to this project by default.");
+    const defaultProjectObj = project.createProject("Default Project", "Todo items are added to this project if no other project has been created.");
     
     const projectList = [];
     projectList.push(defaultProjectObj);
