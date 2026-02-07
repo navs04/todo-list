@@ -1,0 +1,76 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 2rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #f6f7fb;
+    color: #222;
+}
+
+#content{
+    max-width: 55rem;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.projects{
+    background-color: #ffffff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.06);
+}
+
+.projects > h1{
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+.projects > p{
+    margin: 0.5rem 0 1.2rem;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.todos-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.todos{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    background-color: #f9f9fb;
+
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.todos:hover{
+    background-color: #eef0f7;
+    transform: translateY(-1px);
+    box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.05);
+}
+
+.todos h2{
+    margin: 0;
+    font-size: 1rem;
+}
+
+.todos p{
+    margin: 0;
+    font-size: 0.85rem;
+    color: #777;
+}
+
+.projects, .todos{
+    transition: box-shadow 0.2s ease;
+}
