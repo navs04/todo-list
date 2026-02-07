@@ -1,8 +1,10 @@
 import {format} from "date-fns";
 
 function displayDate(dateObj){
-    const result = format(new Date(dateObj),"yyyy-MM-dd");
-    return result;
+    if(dateObj !=""){
+        const result = format(new Date(dateObj),"yyyy-MM-dd");
+        return result;
+    }
 }
 
 const todo = (function(){
