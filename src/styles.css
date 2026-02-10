@@ -55,8 +55,6 @@ body{
 }
 
 .todos:hover{
-    background-color: #eef0f7;
-    transform: translateY(-1px);
     box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.05);
 }
 
@@ -73,4 +71,23 @@ body{
 
 .projects, .todos{
     transition: box-shadow 0.2s ease;
+}
+
+.low{
+    background-color : #e9f7ef;
+    border-left: 6px solid #2ecc71;
+}
+
+.medium{
+    background-color: #fff7e6;
+    border-left: 6px solid #f1c40f; 
+}
+
+.high{
+    background-color: #fdecea;
+    border-left: 6px solid #e74c3c;
+}
+
+.low:hover, .medium:hover, .high:hover {
+    filter: brightness(0.97);
 }

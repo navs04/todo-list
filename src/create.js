@@ -22,6 +22,16 @@ function createProject(project){
 
         todoTitle.textContent = todoArray[i].title;
         todoDueDate.textContent = todoArray[i].dueDate;
+
+        if(todoArray[i].priority == "low"){
+            todoContainer.classList.add("low");
+        }
+        else if (todoArray[i].priority == "medium"){
+            todoContainer.classList.add("medium");
+        }
+        else if (todoArray[i].priority == "high"){
+            todoContainer.classList.add("high");
+        }
         
         todoContainer.append(todoTitle, todoDueDate);
         projectTodos.append(todoContainer);
