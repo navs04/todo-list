@@ -91,3 +91,51 @@ body{
 .low:hover, .medium:hover, .high:hover {
     filter: brightness(0.97);
 }
+
+.todos.expanded {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+    
+    padding: 1rem 1.25rem;
+}
+
+.todos .todo-description, .todos .todo-notes{
+    display: none;
+}
+
+.todos.expanded .todo-description,.todos.expanded .todo-notes{
+    display: block;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+.todos.expanded .todo-description{
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed rgba(0, 0, 0, 0.15);
+}
+
+.todos.expanded .todo-notes{
+    margin-top: 0.25rem;
+}
+
+.todo-notes{
+    font-style: italic;
+    color: #666;
+    font-size: 0.85rem;
+    opacity: 0.85;
+}
+
+.todos.expanded h2{
+    font-size: 1.05rem;
+}
+
+.todos.expanded:hover{
+    transform: none;
+}
+
+.todos.expanded{
+    box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.08);
+}

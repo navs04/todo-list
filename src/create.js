@@ -18,7 +18,12 @@ function createProject(project){
         todoContainer.classList.add("todos");
 
         const todoTitle = document.createElement('h2');
+        const todoDescription = document.createElement('p');
         const todoDueDate = document.createElement('p');
+        const todoNotes = document.createElement('p');
+
+        todoDescription.classList.add("todo-description");
+        todoNotes.classList.add("todo-notes");
 
         todoTitle.textContent = todoArray[i].title;
         todoDueDate.textContent = todoArray[i].dueDate;
@@ -32,8 +37,16 @@ function createProject(project){
         else if (todoArray[i].priority == "high"){
             todoContainer.classList.add("high");
         }
-        
-        todoContainer.append(todoTitle, todoDueDate);
+
+        todoContainer.addEventListener('click', () => {    
+            todoContainer.classList.add("expanded");
+                
+            todoDescription.textContent = todoArray[i].description;
+            todoNotes.textContent = todoArray[i].notes;
+
+        })
+
+        todoContainer.append(todoTitle, todoDescription, todoDueDate, todoNotes);
         projectTodos.append(todoContainer);
     }
 

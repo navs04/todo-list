@@ -26,10 +26,10 @@ const appController = (function(){
 
 const data = (function(){
     const projectData = () => {
-        const todo1 = appController.manageTodo("Oil Painting", "make an oil painting", "2026-01-23", "low","choose a subject, make composition");
-        const todo2 = appController.manageTodo("Sketch composition ideas","","2026-01-18","medium","");
-        const todo3 = appController.manageTodo("Buy new brushes","","2026-01-20", "low", "");
-        const todo4 = appController.manageTodo("Study color theory", "", "2026-01-25", "medium", "");
+        const todo1 = appController.manageTodo("Oil Painting", "Create a complete oil painting from start to finish", "2026-01-23", "low","Choose a subject, plan composition, block colors");
+        const todo2 = appController.manageTodo("Sketch composition ideas","Explore multiple thumbnail sketches","2026-01-18","medium","");
+        const todo3 = appController.manageTodo("Buy new brushes","","2026-01-20", "low", "Flat and round brushes for acrylic and oil");
+        const todo4 = appController.manageTodo("Study color theory", "Understand complementary and analogous colors", "2026-01-25", "medium", "Focus on warm vs cool contrasts");
         const todo5 = appController.manageTodo("Finish background layer", "", "2026-01-22", "high", "");
 
         const project1 = appController.controlProject("Art", "Project for all art related things");
@@ -39,9 +39,9 @@ const data = (function(){
         appController.moveTodo(todo4, project1);
         appController.moveTodo(todo5, project1);
 
-        const todo6 = appController.manageTodo("Complete DSA assignment", "", "2026-01-19", "high", "");
-        const todo7 = appController.manageTodo("Revise sorting algorithms", "", "2026-01-21", "medium", "");
-        const todo8 = appController.manageTodo("Prepare for math quiz", "", "2026-01-24", "high", "focus on integration");
+        const todo6 = appController.manageTodo("Complete DSA assignment", "Finish all remaining problems", "2026-01-19", "high", "Pay attention to time complexity");
+        const todo7 = appController.manageTodo("Revise sorting algorithms", "", "2026-01-21", "medium", "Quick sort, merge sort, and use cases");
+        const todo8 = appController.manageTodo("Prepare for math quiz", "Revise key formulas and practice problems", "2026-01-24", "high", "Focus on integration");
         const todo9 = appController.manageTodo("Organize lecture notes", "", "2026-01-17", "low", "");
         
         const project2 = appController.controlProject("College / Studies", "To keep track of assignments and prepare for exams");
