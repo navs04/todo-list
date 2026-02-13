@@ -13,7 +13,7 @@ const project = (function(){
 })();
 
 const projectManager = (function(){
-    const defaultProjectObj = project.createProject("Default Project", "Todo items are added to this project if no other project has been created.");
+    const defaultProjectObj = project.createProject("Default Project", "Tasks that haven't been assigned to a specific project.");
     
     const projectList = [];
     projectList.push(defaultProjectObj);
@@ -27,18 +27,17 @@ const projectManager = (function(){
 
     const findProject = (project) => {
         for(let i=0; i<projectList.length; i++){
-            if(project == projectList[i]){
+            if(project == projectList[i].title){
                 return projectList[i];
             }
         }
     }
 
-    const currentProject = () => {
-        const currentProj = projectList[projectList.length - 1];
-        return currentProj;
+    const returnProjects = () => {
+        return projectList;
     }
 
-    return {manageProject, currentProject, findProject};
+    return { manageProject, findProject, returnProjects};
 })();
 
 export {project, projectManager};

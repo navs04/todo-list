@@ -6,6 +6,43 @@
     <title>Todo List</title>
 </head>
 <body>
+    <button id="openDialog">Add Todo</button>
+
+    <dialog id="formDialog">
+        <form method="dialog" id="todoForm">
+            <div>
+                <label for="todoTitle">Title:</label>
+                <input type="text" id="todoTitle" name="todoTitle" required>
+            </div>
+            <div>
+                <label for="todoDescription">Description: </label>
+                <input type="text" id="todoDescription" name="todoDescription">
+            </div>
+            <div>
+                <label for="todoDueDate">Due Date:</label>
+                <input type="date" id="todoDueDate" name="todoDueDate">
+            </div> 
+            <div>
+                <label for="todoPriority">Priority:</label>
+                <select id="todoPriority" name="todoPriority" required>
+                    <option value="low">🟢 Low</option>
+                    <option value="medium">🟡 Medium</option>
+                    <option value="high">🔴 High</option>
+                </select>
+            </div>
+            <div>
+                <label for="todoNotes">Notes:</label>
+                <input type="text" id="todoNotes" name="todoNotes">
+            </div>
+            <div>
+                <label for="todoAdd">Add todo to which project: </label>
+                <input type="text" id="todoAdd" name="todoAdd">
+            </div>
+
+            <button type="submit" id="closeDialog">Add Todo</button>
+        </form>
+    </dialog>
+
     <div id="content"></div>
 </body>
 </html>

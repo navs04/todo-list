@@ -1,13 +1,13 @@
 import { createProject } from "./create";
 
 const projectUI = (function(){
-    const containerProjects = document.createElement("div");
-
     const displayProjectUI = (projects) => {
-        Object.keys(projects).forEach(key => {
-            const project1UI = createProject(projects[key]);
+        const containerProjects = document.createElement("div");
+
+        for(let i=0; i<projects.length ;i++){
+            const project1UI = createProject(projects[i]);
             containerProjects.append(project1UI);
-        })
+        }
 
         return containerProjects;
     }
