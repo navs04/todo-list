@@ -140,7 +140,7 @@ body{
     box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.08);
 }
 
-#formDialog{
+#formDialog, #formDialogProject{
     border: none;
     border-radius: 1rem;
     padding: 0;
@@ -149,24 +149,29 @@ body{
     color: white;
 }
 
-#formDialog::backdrop{
+#formDialog::backdrop, #formDialogProject::backdrop{
     background: rgba(0, 0, 0, 0.6);
 }
 
-#todoForm{
+#formDialogProject h2{
+    padding: 1.4rem 2rem 0;
+    font-size: 1.2rem;
+}
+
+#todoForm, #projectForm{
     display: flex;
     flex-direction: column;
     gap: 1rem;
     padding: 2rem;
 }
 
-#todoForm div{
+#todoForm div, #projectForm div{
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
-#todoForm input, #todoForm select{
+#todoForm input, #todoForm select, #projectForm input{
     padding: 0.6rem;
     border-radius: 0.5rem;
     border: 1px solid #333;
@@ -175,27 +180,40 @@ body{
     font-size: 1rem;
 }
 
-#todoForm input:focus, #todoForm select:focus{
+#todoForm input:focus, #todoForm select:focus, #projectForm input:focus{
     outline: none;
     border-color: #6c63ff;
 }
 
-#openDialog{
+#openDialog, #openDialogProject{
     padding: 0.7rem 1.2rem;
     border-radius: 0.6rem;
     border: none;
-    background-color: #6c63ff;
     color: white;
     font-weight: bold;
     cursor: pointer;
     transition: 0.2s ease;
 }
 
-#openDialog:hover{
-    background-color: #574bdb;
+#openDialog{
+    background-color: #6c63ff;
 }
 
-#closeDialog{
+#openDialog:hover{
+    background-color: #574bdb;
+    transform: translateY(-2px);
+}
+
+#openDialogProject{
+    background-color: #2d2d2d;
+}
+
+#openDialogProject:hover{
+    background-color: #3a3a3a;
+    transform: translateY(-2px);
+}
+
+#closeDialog, #closeDialogProject{
     margin-top: 0.7rem;
     padding: 0.9rem;
     border-radius: 0.7rem;
@@ -204,4 +222,9 @@ body{
     color: white;
     font-weight: bold;
     cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#closeDialog:hover, #closeDialogProject:hover{
+    background-color: #574bdb;
 }

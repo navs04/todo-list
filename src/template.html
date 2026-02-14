@@ -43,6 +43,24 @@
         </form>
     </dialog>
 
+    <button id="openDialogProject">Add Project</button>
+
+    <dialog id="formDialogProject">
+        <h2>Create New Project</h2>
+        <form method="dialog" id="projectForm">
+            <div>
+                <label for="projectTitle">Title: </label>
+                <input type="text" id="projectTitle" name="projectTitle" required>
+            </div>
+            <div>
+                <label for="projectDescription">Description:</label>
+                <input type="text" id="projectDescription" name="projectDescription">
+            </div>
+
+            <button type="submit" id="closeDialogProject">Add Project</button>
+        </form>
+    </dialog>
+
     <div id="content"></div>
 </body>
 </html>

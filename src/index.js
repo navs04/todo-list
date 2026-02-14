@@ -47,17 +47,6 @@ const data = (function(){
         appController.moveTodo(todo3, "Art");
         appController.moveTodo(todo4, "Art");
         appController.moveTodo(todo5, "Art");
-
-        const todo6 = appController.manageTodo("Complete DSA assignment", "Finish all remaining problems", "2026-01-19", "high", "Pay attention to time complexity");
-        const todo7 = appController.manageTodo("Revise sorting algorithms", "", "2026-01-21", "medium", "Quick sort, merge sort, and use cases");
-        const todo8 = appController.manageTodo("Prepare for math quiz", "Revise key formulas and practice problems", "2026-01-24", "high", "Focus on integration");
-        const todo9 = appController.manageTodo("Organize lecture notes", "", "2026-01-17", "low", "");
-        
-        appController.controlProject("College / Studies", "To keep track of assignments and prepare for exams");
-        appController.moveTodo(todo6, "College / Studies");
-        appController.moveTodo(todo7, "College / Studies");
-        appController.moveTodo(todo8, "College / Studies");
-        appController.moveTodo(todo9, "College / Studies");
     }
 
     return {projectData};
@@ -79,7 +68,9 @@ render();
 
 const todoForm = document.querySelector("#todoForm");
 
-todoForm.addEventListener('submit', () => {
+todoForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
     const titleTodo = document.querySelector("#todoTitle").value;
     const descriptionTodo = document.querySelector("#todoDescription").value;
     const dueDateTodo = document.querySelector("#todoDueDate").value;
@@ -104,6 +95,32 @@ openDialog.addEventListener('click', () => {
 
 closeDialog.addEventListener('click', () => {
     formDialog.close();
+})
+
+const projectForm = document.querySelector("#projectForm");
+
+projectForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const titleProject = document.querySelector("#projectTitle").value;
+    const descriptionProject = document.querySelector("#projectDescription").value;
+
+    appController.controlProject(titleProject, descriptionProject);
+    render();
+
+    projectForm.reset();
+})
+
+const openDialogProject = document.querySelector("#openDialogProject");
+const formDialogProject = document.querySelector("#formDialogProject");
+const closeDialogProject = document.querySelector("#closeDialogProject");
+
+openDialogProject.addEventListener('click', () => {
+    formDialogProject.showModal();
+})
+
+closeDialogProject.addEventListener('click', () => {
+    formDialogProject.close();
 })
 
 export {data};
