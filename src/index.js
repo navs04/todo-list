@@ -3,6 +3,9 @@ import {todo} from "./todo";
 import { projectManager } from "./project";
 import { projectUI } from "./ui";
 
+let editingTodo = null;
+let editingProject = null;
+
 const appController = (function(){
     const manageTodo = (title, description, dueDate, priority, notes) => {
         const todoObj= todo.createTodo(title, description, dueDate, priority, notes);
@@ -78,10 +81,27 @@ todoForm.addEventListener('submit', (e) => {
     const notesTodo = document.querySelector("#todoNotes").value;
     const todoAdd = document.querySelector("#todoAdd").value;
 
-    const createdTodo = appController.manageTodo(titleTodo, descriptionTodo, dueDateTodo, priorityTodo, notesTodo);
-    appController.moveTodoProject(createdTodo, todoAdd);
-    render();
+    if(editingTodo){
+        editingTodo.title = titleTodo;
+        editingTodo.description = descriptionTodo;
+        editingTodo.dueDate = dueDateTodo;
+        editingTodo.priority = priorityTodo;
+        editingTodo.notes = notesTodo;
 
+        if(todoAdd != editingProject.title){
+            editingProject.projectStorage = editingProject.projectStorage.filter(t => t !== editingTodo);
+            appController.moveTodoProject(editingTodo, todoAdd);
+        }
+
+        editingTodo = null;
+        editingProject = null;
+    }
+    else{
+        const createdTodo = appController.manageTodo(titleTodo, descriptionTodo, dueDateTodo, priorityTodo, notesTodo);
+        appController.moveTodoProject(createdTodo, todoAdd);
+    }
+
+    render();
     todoForm.reset();
 })
 
@@ -96,6 +116,20 @@ openDialog.addEventListener('click', () => {
 closeDialog.addEventListener('click', () => {
     formDialog.close();
 })
+
+function editTodo(project, todo){
+    editingTodo = todo;
+    editingProject = project;
+
+    document.querySelector("#todoTitle").value = todo.title;
+    document.querySelector("#todoDescription").value = todo.description;
+    document.querySelector("#todoDueDate").value = todo.dueDate;
+    document.querySelector("#todoPriority").value = todo.priority;
+    document.querySelector("#todoNotes").value = todo.notes;
+    document.querySelector("#todoAdd").value= project.title;
+
+    formDialog.showModal();
+}
 
 const projectForm = document.querySelector("#projectForm");
 
@@ -123,4 +157,4 @@ closeDialogProject.addEventListener('click', () => {
     formDialogProject.close();
 })
 
-export {data};
+export {data, editTodo, render};

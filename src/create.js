@@ -1,3 +1,5 @@
+import { editTodo, render } from ".";
+
 function createProject(project){
     const projectContainer = document.createElement('div');
     projectContainer.classList.add("projects");
@@ -16,6 +18,12 @@ function createProject(project){
     for (let i=0; i < todoArray.length; i++){
         const todoContainer = document.createElement('div');
         todoContainer.classList.add("todos");
+        const currentTodo = todoArray[i];
+
+        const todoEdit = document.createElement('button');
+        todoEdit.classList.add('editBtn');
+        const todoDelete = document.createElement('button');
+        todoDelete.classList.add('deleteBtn')
 
         const todoTitle = document.createElement('h2');
         const todoDescription = document.createElement('p');
@@ -25,28 +33,39 @@ function createProject(project){
         todoDescription.classList.add("todo-description");
         todoNotes.classList.add("todo-notes");
 
-        todoTitle.textContent = todoArray[i].title;
-        todoDueDate.textContent = todoArray[i].dueDate;
+        todoTitle.textContent = currentTodo.title;
+        todoDueDate.textContent = currentTodo.dueDate;
 
-        if(todoArray[i].priority == "low"){
+        if(currentTodo.priority == "low"){
             todoContainer.classList.add("low");
         }
-        else if (todoArray[i].priority == "medium"){
+        else if (currentTodo.priority == "medium"){
             todoContainer.classList.add("medium");
         }
-        else if (todoArray[i].priority == "high"){
+        else if (currentTodo.priority == "high"){
             todoContainer.classList.add("high");
         }
 
         todoContainer.addEventListener('click', () => {    
             todoContainer.classList.add("expanded");
-                
-            todoDescription.textContent = todoArray[i].description;
-            todoNotes.textContent = todoArray[i].notes;
 
+            todoEdit.textContent = "Edit";
+            todoDelete.textContent = "Delete";
+                
+            todoDescription.textContent = currentTodo.description;
+            todoNotes.textContent = currentTodo.notes;
         })
 
-        todoContainer.append(todoTitle, todoDescription, todoDueDate, todoNotes);
+        todoEdit.addEventListener('click', () => {
+            editTodo(project, currentTodo);
+        })
+
+        todoDelete.addEventListener('click', () => {
+            project.projectStorage = project.projectStorage.filter(t => t !== currentTodo);
+            render();
+        })
+
+        todoContainer.append(todoTitle, todoDescription, todoDueDate, todoNotes, todoEdit, todoDelete);
         projectTodos.append(todoContainer);
     }
 

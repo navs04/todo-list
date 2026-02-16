@@ -228,3 +228,41 @@ body{
 #closeDialog:hover, #closeDialogProject:hover{
     background-color: #574bdb;
 }
+
+.todos .editBtn, .todos .deleteBtn{
+    display: none;
+}
+
+.todos.expanded .editBtn, .todos.expanded .deleteBtn{
+    display: block;
+}
+
+.editBtn, .deleteBtn{
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.editBtn{
+    background-color: #f3f4f6;
+    color: #333;
+}
+
+.editBtn:hover{
+    background-color: #e5e7eb;
+    transform: translateY(-1px);
+}
+
+.deleteBtn{
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.deleteBtn:hover{
+    background-color: #fecaca;
+    transform: translateY(-1px);
+}
