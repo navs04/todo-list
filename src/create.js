@@ -20,10 +20,17 @@ function createProject(project){
         todoContainer.classList.add("todos");
         const currentTodo = todoArray[i];
 
+        if(currentTodo.completed){
+            todoContainer.classList.add('completed');
+        }
+
         const todoEdit = document.createElement('button');
         todoEdit.classList.add('editBtn');
         const todoDelete = document.createElement('button');
         todoDelete.classList.add('deleteBtn')
+        const todoCheckbox = document.createElement('input');
+        todoCheckbox.type = 'checkbox';
+        todoCheckbox.checked = currentTodo.completed;
 
         const todoTitle = document.createElement('h2');
         const todoDescription = document.createElement('p');
@@ -65,7 +72,13 @@ function createProject(project){
             render();
         })
 
-        todoContainer.append(todoTitle, todoDescription, todoDueDate, todoNotes, todoEdit, todoDelete);
+        todoCheckbox.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentTodo.completed = !currentTodo.completed;
+            render();
+        })
+
+        todoContainer.append(todoCheckbox, todoTitle, todoDescription, todoDueDate, todoNotes, todoEdit, todoDelete);
         projectTodos.append(todoContainer);
     }
 

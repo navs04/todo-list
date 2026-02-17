@@ -15,7 +15,7 @@ const todo = (function(){
             dueDate: displayDate(dueDate),
             priority: priority,
             notes: notes,
-            status: "incomplete",
+            completed: false,
             id: crypto.randomUUID(),
         };
 

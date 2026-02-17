@@ -51,7 +51,7 @@ body{
     background-color: #f9f9fb;
 
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s ease;
+    transition: opacity 0.2s ease, background-color 0.2s ease, transform 0.1s ease;
 }
 
 .todos:hover{
@@ -265,4 +265,19 @@ body{
 .deleteBtn:hover{
     background-color: #fecaca;
     transform: translateY(-1px);
+}
+
+.todos.completed{
+    opacity: 0.6;
+    background-color: #f5f5f5;
+}
+
+.todos.completed h2{
+    text-decoration: line-through;
+}
+
+.todos.completed.low,
+.todos.completed.medium,
+.todos.completed.high {
+    border-left-color: #bbb;
 }
