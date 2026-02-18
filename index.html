@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+<script defer src="main.js"></script></head>
+<body>
+    <button id="openDialog">Add Todo</button>
+
+    <dialog id="formDialog">
+        <form method="dialog" id="todoForm">
+            <div>
+                <label for="todoTitle">Title:</label>
+                <input type="text" id="todoTitle" name="todoTitle" required>
+            </div>
+            <div>
+                <label for="todoDescription">Description: </label>
+                <input type="text" id="todoDescription" name="todoDescription">
+            </div>
+            <div>
+                <label for="todoDueDate">Due Date:</label>
+                <input type="date" id="todoDueDate" name="todoDueDate">
+            </div> 
+            <div>
+                <label for="todoPriority">Priority:</label>
+                <select id="todoPriority" name="todoPriority" required>
+                    <option value="low">🟢 Low</option>
+                    <option value="medium">🟡 Medium</option>
+                    <option value="high">🔴 High</option>
+                </select>
+            </div>
+            <div>
+                <label for="todoNotes">Notes:</label>
+                <input type="text" id="todoNotes" name="todoNotes">
+            </div>
+            <div>
+                <label for="todoAdd">Add todo to which project: </label>
+                <select id="todoAdd" name="todoAdd"></select>
+            </div>
+
+            <button type="submit" id="closeDialog">Add Todo</button>
+        </form>
+    </dialog>
+
+    <button id="openDialogProject">Add Project</button>
+
+    <dialog id="formDialogProject">
+        <h2>Create New Project</h2>
+        <form method="dialog" id="projectForm">
+            <div>
+                <label for="projectTitle">Title: </label>
+                <input type="text" id="projectTitle" name="projectTitle" required>
+            </div>
+            <div>
+                <label for="projectDescription">Description:</label>
+                <input type="text" id="projectDescription" name="projectDescription">
+            </div>
+
+            <button type="submit" id="closeDialogProject">Add Project</button>
+        </form>
+    </dialog>
+
+    <div id="content"></div>
+</body>
+</html>
