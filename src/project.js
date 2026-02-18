@@ -1,4 +1,5 @@
 import { todo } from "./todo";
+import { render } from ".";
 
 const project = (function(){
     const createProject = (title, description) => {
@@ -24,6 +25,15 @@ const projectManager = (function(){
         saveProjects();
 
         return manageProjectObj;
+    }
+
+    const deleteProject = (projectId) => {
+        const index = projectList.findIndex(p => p.id === projectId);
+        if (index !== -1) {
+            projectList.splice(index, 1);
+        }
+        saveProjects();
+        render();
     }
 
     const findProject = (projectId) => {
@@ -65,7 +75,7 @@ const projectManager = (function(){
         }
     }
 
-    return { manageProject, findProject, returnProjects, saveProjects, loadProjects};
+    return { manageProject, findProject, returnProjects, saveProjects, loadProjects, deleteProject};
 })();
 
 export {project, projectManager};

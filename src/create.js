@@ -5,11 +5,26 @@ function createProject(project){
     const projectContainer = document.createElement('div');
     projectContainer.classList.add("projects");
 
+    const header = document.createElement("div");
+    header.classList.add("project-header");
+
     const projectTitle = document.createElement('h1');
     projectTitle.textContent = project.title;
 
     const projectDescription = document.createElement('p');
     projectDescription.textContent = project.description;
+
+    const deleteProjectBtn = document.createElement("button");
+    deleteProjectBtn.textContent = "Delete";
+    deleteProjectBtn.dataset.id = project.id;
+    deleteProjectBtn.classList.add("deleteProjectBtn");
+
+    deleteProjectBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        projectManager.deleteProject(project.id);
+    })
+
+    header.append(projectTitle, deleteProjectBtn);
 
     const projectTodos = document.createElement('div');
     projectTodos.classList.add("todos-container");
@@ -84,7 +99,7 @@ function createProject(project){
         projectTodos.append(todoContainer);
     }
 
-    projectContainer.append(projectTitle, projectDescription, projectTodos);
+    projectContainer.append(header, projectDescription, projectTodos);
 
     return projectContainer;
 }

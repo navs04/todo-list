@@ -24,6 +24,25 @@ body{
     box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.06);
 }
 
+.project-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.deleteProjectBtn{
+    background: none;
+    border: none;
+    font-size: 0.85rem;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.deleteProjectBtn:hover {
+    color: #e63946;
+}
+
 .projects > h1{
     margin: 0;
     font-size: 1.6rem;
