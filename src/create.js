@@ -1,4 +1,5 @@
 import { editTodo, render } from ".";
+import { projectManager } from "./project";
 
 function createProject(project){
     const projectContainer = document.createElement('div');
@@ -69,6 +70,7 @@ function createProject(project){
 
         todoDelete.addEventListener('click', () => {
             project.projectStorage = project.projectStorage.filter(t => t !== currentTodo);
+            projectManager.saveProjects();
             render();
         })
 

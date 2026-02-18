@@ -1,4 +1,5 @@
 import { createProject } from "./create";
+import { projectManager } from "./project";
 
 const projectUI = (function(){
     const displayProjectUI = (projects) => {
@@ -11,8 +12,21 @@ const projectUI = (function(){
 
         return containerProjects;
     }
+
+    const renderProjectDropdown = () => {
+        const select = document.querySelector("#todoAdd");
+        select.innerHTML = "";
+        
+        const projectArray = projectManager.returnProjects();
+        projectArray.forEach(project => {
+            const option = document.createElement('option');
+            option.value = project.id;
+            option.textContent = project.title;
+            select.appendChild(option);
+        })
+    }
     
-    return {displayProjectUI};
+    return {displayProjectUI, renderProjectDropdown};
 })();
 
 export {projectUI};

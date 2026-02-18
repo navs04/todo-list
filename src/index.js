@@ -19,9 +19,10 @@ const appController = (function(){
         return projObj;
     }
 
-    const moveTodo = (todo, project) => {
-        const projectFound = projectManager.findProject(project);
+    const moveTodo = (todo, projectId) => {
+        const projectFound = projectManager.findProject(projectId);
         projectFound.addTodo(todo);
+        projectManager.saveProjects();
     }
 
     const moveTodoProject = (todo, project) => {
@@ -29,7 +30,7 @@ const appController = (function(){
             moveTodo(todo, project);
         }
         else{
-            moveTodo(todo, "Default Project");
+            moveTodo(todo, defaultProject.id);
         }
     }
 
@@ -44,18 +45,16 @@ const data = (function(){
         const todo4 = appController.manageTodo("Study color theory", "Understand complementary and analogous colors", "2026-01-25", "medium", "Focus on warm vs cool contrasts");
         const todo5 = appController.manageTodo("Finish background layer", "", "2026-01-22", "high", "");
 
-        appController.controlProject("Art", "Project for all art related things");
-        appController.moveTodo(todo1, "Art");
-        appController.moveTodo(todo2, "Art");
-        appController.moveTodo(todo3, "Art");
-        appController.moveTodo(todo4, "Art");
-        appController.moveTodo(todo5, "Art");
+        const project1 = appController.controlProject("Art", "Project for all art related things");
+        appController.moveTodo(todo1, project1.id);
+        appController.moveTodo(todo2, project1.id);
+        appController.moveTodo(todo3, project1.id);
+        appController.moveTodo(todo4, project1.id);
+        appController.moveTodo(todo5, project1.id);
     }
 
     return {projectData};
 })();
-
-data.projectData();
 
 
 const content = document.querySelector("#content");
@@ -63,9 +62,18 @@ const content = document.querySelector("#content");
 function render(){
     content.innerHTML = "";
     const displayProject = projectUI.displayProjectUI(projectManager.returnProjects());
+    projectUI.renderProjectDropdown();
     content.append(displayProject);
 }
 
+if(!projectManager.loadProjects()){
+    const defaultProject = projectManager.manageProject(
+        "Default Project",
+        "Tasks that haven't been assigned to a specific project."
+    );
+
+    data.projectData();
+}
 render();
 
 
@@ -91,6 +99,7 @@ todoForm.addEventListener('submit', (e) => {
         if(todoAdd != editingProject.title){
             editingProject.projectStorage = editingProject.projectStorage.filter(t => t !== editingTodo);
             appController.moveTodoProject(editingTodo, todoAdd);
+            projectManager.saveProjects();
         }
 
         editingTodo = null;
@@ -101,6 +110,7 @@ todoForm.addEventListener('submit', (e) => {
         appController.moveTodoProject(createdTodo, todoAdd);
     }
 
+    projectManager.saveProjects();
     render();
     todoForm.reset();
 })

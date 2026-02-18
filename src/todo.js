@@ -1,9 +1,12 @@
 import {format} from "date-fns";
 
 function displayDate(dateObj){
-    if(dateObj !=""){
+    if(dateObj){
         const result = format(new Date(dateObj),"yyyy-MM-dd");
         return result;
+    }
+    else{
+        return "";
     }
 }
 

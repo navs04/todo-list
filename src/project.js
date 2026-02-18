@@ -1,43 +1,71 @@
+import { todo } from "./todo";
+
 const project = (function(){
     const createProject = (title, description) => {
         const projectStorage = [];
+        const id = crypto.randomUUID();
 
         const addTodo = (todo) => {
             projectStorage.push(todo);
         }
         
-        return {title, description, projectStorage, addTodo};
+        return {title, description, projectStorage, addTodo, id};
     }
 
     return {createProject};
 })();
 
 const projectManager = (function(){
-    const defaultProjectObj = project.createProject("Default Project", "Tasks that haven't been assigned to a specific project.");
-    
     const projectList = [];
-    projectList.push(defaultProjectObj);
 
     const manageProject = (title, description) => {
         const manageProjectObj = project.createProject(title, description);
         projectList.push(manageProjectObj);
+        saveProjects();
 
         return manageProjectObj;
     }
 
-    const findProject = (project) => {
-        for(let i=0; i<projectList.length; i++){
-            if(project == projectList[i].title){
-                return projectList[i];
-            }
-        }
+    const findProject = (projectId) => {
+        return projectList.find(p => p.id === projectId);
     }
 
     const returnProjects = () => {
         return projectList;
     }
 
-    return { manageProject, findProject, returnProjects};
+    const saveProjects = () => {
+        localStorage.setItem("projects", JSON.stringify(projectList));
+    }
+
+    const loadProjects = () => {
+        const stored = localStorage.getItem("projects");
+
+        if(stored){
+            const parsedProjects = JSON.parse(stored);
+            projectList.length = 0;
+
+            parsedProjects.forEach(storedProject => {
+                const newProject = project.createProject(storedProject.title, storedProject.description);
+
+                if(storedProject.projectStorage){
+                    storedProject.projectStorage.forEach(storedTodo => {
+                    const newTodo = todo.createTodo(storedTodo.title, storedTodo.description, storedTodo.dueDate, storedTodo.priority, storedTodo.notes);
+                    newTodo.completed = storedTodo.completed;
+                    newProject.addTodo(newTodo);
+                });
+                }
+                projectList.push(newProject);
+            });
+
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    return { manageProject, findProject, returnProjects, saveProjects, loadProjects};
 })();
 
 export {project, projectManager};
